@@ -1,4 +1,4 @@
-package com.zzs.springcloud.conmmon;
+package com.zzs.cloud.common;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

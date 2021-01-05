@@ -1,7 +1,7 @@
 package com.zzs.springcloud.controller;
 
-import com.zzs.springcloud.common.CommonResult;
-import com.zzs.springcloud.entities.Payment;
+import com.zzs.cloud.common.CommonResult;
+import com.zzs.cloud.entites.Payment;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
