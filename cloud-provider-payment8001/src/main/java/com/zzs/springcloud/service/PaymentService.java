@@ -1,6 +1,6 @@
 package com.zzs.springcloud.service;
 
-import com.zzs.springcloud.entity.Payment;
+import com.zzs.springcloud.entities.Payment;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -13,7 +13,7 @@ public interface PaymentService {
      * @param payment
      * @return
      */
-    int add(Payment payment);
+    int create(Payment payment);
 
 
     /**
@@ -21,5 +21,5 @@ public interface PaymentService {
      * @param id
      * @return
      */
-    Payment findById(@Param("id") Long id);
+    Payment getPaymentById(@Param("id") Long id);
 }

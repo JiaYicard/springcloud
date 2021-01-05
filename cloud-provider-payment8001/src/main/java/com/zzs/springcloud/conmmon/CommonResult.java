@@ -1,6 +1,7 @@
 package com.zzs.springcloud.conmmon;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -9,6 +10,7 @@ import java.io.Serializable;
  * @since 2020/12/8 22:17
  */
 @Data
+@NoArgsConstructor
 public final class CommonResult<T> implements Serializable {
 
     /**

@@ -1,6 +1,6 @@
 package com.zzs.springcloud.dao;
 
-import com.zzs.springcloud.entity.Payment;
+import com.zzs.springcloud.entities.Payment;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 /**
@@ -14,7 +14,7 @@ public interface PaymentDao {
      * @param payment
      * @return
      */
-    int add(Payment payment);
+    int create(Payment payment);
 
 
     /**
@@ -22,5 +22,5 @@ public interface PaymentDao {
      * @param id
      * @return
      */
-    Payment findById(@Param("id") Long id);
+    Payment getPaymentById(@Param("id") Long id);
 }

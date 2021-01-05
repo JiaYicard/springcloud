@@ -1,7 +1,7 @@
 package com.zzs.springcloud.service.impl;
 
 import com.zzs.springcloud.dao.PaymentDao;
-import com.zzs.springcloud.entity.Payment;
+import com.zzs.springcloud.entities.Payment;
 import com.zzs.springcloud.service.PaymentService;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +18,12 @@ public class PaymentServiceImpl implements PaymentService {
     private PaymentDao paymentDao;
 
     @Override
-    public int add(Payment payment) {
-        return paymentDao.add(payment);
+    public int create(Payment payment) {
+        return paymentDao.create(payment);
     }
 
     @Override
-    public Payment findById(Long id) {
-        return paymentDao.findById(id);
+    public Payment getPaymentById(Long id) {
+        return paymentDao.getPaymentById(id);
     }
 }
