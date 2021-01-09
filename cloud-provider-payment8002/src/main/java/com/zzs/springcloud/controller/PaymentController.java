@@ -19,11 +19,11 @@ import java.util.List;
 @RestController
 public class PaymentController {
 
-    @Value("${server.port}")
-    private String serverPort;
-
     @Resource
     private PaymentService paymentService;
+
+    @Value("${server.port}")
+    private String serverPort;
 
     @Resource
     private DiscoveryClient discoveryClient;

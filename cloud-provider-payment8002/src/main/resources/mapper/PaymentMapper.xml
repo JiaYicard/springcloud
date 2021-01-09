@@ -16,4 +16,5 @@
     <select id="getPaymentById" parameterType="Long"  resultMap="PaymentMap">
         SELECT * FROM z_payment WHERE id=#{id}
     </select>
+
 </mapper>

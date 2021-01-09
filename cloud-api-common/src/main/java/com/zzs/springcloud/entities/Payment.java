@@ -1,4 +1,4 @@
-package com.zzs.cloud.entites;
+package com.zzs.springcloud.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Payment implements Serializable {
+    public class Payment implements Serializable {
     /**
      * 支付id
      */
