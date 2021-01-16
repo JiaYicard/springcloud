@@ -37,7 +37,12 @@ public class PaymentController {
 
     @RequestMapping(value = "payment/get/{id}",method = RequestMethod.GET)
     private CommonResult getPaymentById(@PathVariable("id") Long id)  {
-        return CommonResult.success(paymentService.getPaymentById(id));
+        return CommonResult.success(paymentService.getPaymentById(id)+"端口号为: "+serverPort);
+    }
+
+    @GetMapping(value = "/payment/lb")
+    public String getPaymentLB(){
+        return serverPort;
     }
 
     /**
