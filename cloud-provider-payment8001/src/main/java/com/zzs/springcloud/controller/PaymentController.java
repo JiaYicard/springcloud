@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author mountain
@@ -27,6 +28,20 @@ public class PaymentController {
 
     @Resource
     private DiscoveryClient discoveryClient;
+
+    /**
+     * 模拟响应超1s情况
+     * @return
+     */
+    @GetMapping("/payment/feign/timeout")
+    private String paymentFeignTimeout() {
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return serverPort;
+    }
 
     @RequestMapping(value = "payment/create",method = RequestMethod.POST)
     private CommonResult add(@RequestBody Payment payment){
