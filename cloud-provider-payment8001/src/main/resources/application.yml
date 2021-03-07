@@ -12,8 +12,8 @@ spring:
     password: root
 
 mybatis:
-  mapperLocations: classpath:mapper/*.xml
   type-aliases-package: com.zzs.springcloud.entities
+  mapperLocations: classpath:/mapper/*.xml
 
 eureka:
   client:

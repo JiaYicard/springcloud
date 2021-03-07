@@ -3,14 +3,12 @@ import com.zzs.springcloud.common.CommonResult;
 import com.zzs.springcloud.entities.Payment;
 import com.zzs.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author mountain
@@ -20,57 +18,19 @@ import java.util.concurrent.TimeUnit;
 @RestController
 public class PaymentController {
 
-    @Value("${server.port}")
-    private String serverPort;
-
     @Resource
     private PaymentService paymentService;
 
-    @Resource
-    private DiscoveryClient discoveryClient;
-
-    /**
-     * 模拟响应超1s情况
-     * @return
-     */
-    @GetMapping("/payment/feign/timeout")
-    private String paymentFeignTimeout() {
-        try {
-            TimeUnit.SECONDS.sleep(3);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return serverPort;
-    }
-
     @RequestMapping(value = "payment/create",method = RequestMethod.POST)
-    private CommonResult add(@RequestBody Payment payment){
+    private CommonResult add(Payment payment){
         int result=paymentService.create(payment);
         log.info("********* 插入结果"+result);
-        return CommonResult.success("添加成功：端口为"+serverPort);
+        return CommonResult.success("添加成功");
     }
 
     @RequestMapping(value = "payment/get/{id}",method = RequestMethod.GET)
     private CommonResult getPaymentById(@PathVariable("id") Long id)  {
-        return CommonResult.success(paymentService.getPaymentById(id)+"端口号为: "+serverPort);
-    }
-
-    @GetMapping(value = "/payment/lb")
-    public String getPaymentLB(){
-        return serverPort;
-    }
-
-    /**
-     * 获取服务的信息
-     * @return
-     */
-    @GetMapping("/payment/discovery")
-    public Object discovery(){
-        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
-        for (ServiceInstance instance : instances) {
-            log.info(instance.getServiceId()+"\t"+instance.getHost()+"\t"+instance.getPort()+"\t"+instance.getUri());
-        }
-        return this.discoveryClient;
+        return CommonResult.success(paymentService.getPaymentById(id));
     }
 }
 
