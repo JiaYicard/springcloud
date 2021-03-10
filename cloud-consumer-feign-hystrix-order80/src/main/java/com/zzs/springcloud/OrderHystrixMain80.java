@@ -6,10 +6,9 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
- * @author mountain
- * @since 2021/3/9 21:04
+ * @author mm013
+ * @Date 2021/3/10 9:35
  */
-
 @EnableHystrix
 @EnableFeignClients
 @SpringBootApplication
