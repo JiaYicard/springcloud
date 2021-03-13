@@ -3,10 +3,8 @@ import com.zzs.springcloud.common.CommonResult;
 import com.zzs.springcloud.entities.Payment;
 import com.zzs.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -17,6 +15,9 @@ import javax.annotation.Resource;
 @Slf4j
 @RestController
 public class PaymentController {
+
+    @Value("${server.port}")
+    private String serverPort;
 
     @Resource
     private PaymentService paymentService;
@@ -31,6 +32,11 @@ public class PaymentController {
     @RequestMapping(value = "payment/get/{id}",method = RequestMethod.GET)
     private CommonResult getPaymentById(@PathVariable("id") Long id)  {
         return CommonResult.success(paymentService.getPaymentById(id));
+    }
+
+    @GetMapping(value = "/payment/lb")
+    public String getPaymentLB(){
+        return serverPort;
     }
 }
 
