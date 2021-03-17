@@ -12,19 +12,20 @@ spring:
             - springcloud-config      #仓库名称
       label: main     #分支名称
 
-eureka:
-  client:
-    service-url:
-      defaultZone:  http://localhost:7001/eureka
-
-rabbitmq:
-  host: localhost
-  port: 5672
-  username: guest
-  password: guest
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 management:
   endpoints:
     web:
       exposure:
         include: 'bus-refresh'
+
+eureka:
+  client:
+    service-url:
+      defaultZone:  http://localhost:7001/eureka
+
