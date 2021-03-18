@@ -1,4 +1,5 @@
 package com.zzs.springcloud.controller;
+
 import com.zzs.springcloud.common.CommonResult;
 import com.zzs.springcloud.entities.Payment;
 import com.zzs.springcloud.service.PaymentService;
@@ -22,21 +23,26 @@ public class PaymentController {
     @Resource
     private PaymentService paymentService;
 
-    @RequestMapping(value = "payment/create",method = RequestMethod.POST)
-    private CommonResult add(Payment payment){
-        int result=paymentService.create(payment);
-        log.info("********* 插入结果"+result);
+    @RequestMapping(value = "payment/create", method = RequestMethod.POST)
+    private CommonResult add(Payment payment) {
+        int result = paymentService.create(payment);
+        log.info("********* 插入结果" + result);
         return CommonResult.success("添加成功");
     }
 
-    @RequestMapping(value = "payment/get/{id}",method = RequestMethod.GET)
-    private CommonResult getPaymentById(@PathVariable("id") Long id)  {
+    @RequestMapping(value = "payment/get/{id}", method = RequestMethod.GET)
+    private CommonResult getPaymentById(@PathVariable("id") Long id) {
         return CommonResult.success(paymentService.getPaymentById(id));
     }
 
     @GetMapping(value = "/payment/lb")
-    public String getPaymentLB(){
+    public String getPaymentLB() {
         return serverPort;
+    }
+
+    @GetMapping("/payment/zipkin")
+    public String paymentZipkin() {
+        return "hi ,i'am paymentzipkin server fall back，welcome to atguigu，O(∩_∩)O哈哈~";
     }
 }
 
